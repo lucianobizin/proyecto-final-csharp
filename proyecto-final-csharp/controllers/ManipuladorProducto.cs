@@ -127,5 +127,118 @@ namespace proyecto_final_csharp.controllers
             return productos;
         }
 
+        public static int InsertarProducto(Producto producto)
+        {
+            using (SqlConnection conn = ConnectionHandler.ConnectToDb())
+            {
+                SqlCommand command = new SqlCommand("INSERT INTO Producto (Descripciones, Costo, PrecioVenta, Stock, IdUsuario) VALUES (@descripciones, @costo, @precioVenta, @stock, @idUsuario)", conn);
+
+                SqlParameter idParameterDescripciones = new SqlParameter();
+                idParameterDescripciones.ParameterName = "descripciones";
+                idParameterDescripciones.SqlDbType = SqlDbType.VarChar;
+                idParameterDescripciones.Value = producto.Descripciones;
+
+                SqlParameter idParameterCosto = new SqlParameter();
+                idParameterCosto.ParameterName = "costo";
+                idParameterCosto.SqlDbType = SqlDbType.Money;
+                idParameterCosto.Value = producto.Costo;
+
+                SqlParameter idParameterPrecioVenta = new SqlParameter();
+                idParameterPrecioVenta.ParameterName = "precioVenta";
+                idParameterPrecioVenta.SqlDbType = SqlDbType.Money;
+                idParameterPrecioVenta.Value = producto.PrecioVenta;
+
+                SqlParameter idParameterStock = new SqlParameter();
+                idParameterStock.ParameterName = "stock";
+                idParameterStock.SqlDbType = SqlDbType.Int;
+                idParameterStock.Value = producto.Stock;
+
+                SqlParameter idParameterIdUsuario = new SqlParameter();
+                idParameterIdUsuario.ParameterName = "idUsuario";
+                idParameterIdUsuario.SqlDbType = SqlDbType.BigInt;
+                idParameterIdUsuario.Value = producto.IdUsuario;
+
+                command.Parameters.Add(idParameterDescripciones);
+                command.Parameters.Add(idParameterCosto);
+                command.Parameters.Add(idParameterPrecioVenta);
+                command.Parameters.Add(idParameterStock);
+                command.Parameters.Add(idParameterIdUsuario);
+
+                conn.Open();
+
+                return command.ExecuteNonQuery();
+            }
+        }
+
+        public static int ModificarProducto(Producto productoModificado)
+        {
+            using (SqlConnection conn = ConnectionHandler.ConnectToDb())
+            {
+                SqlCommand command = new SqlCommand("UPDATE Producto SET Descripciones=@descripciones, Costo=@costo, PrecioVenta=@precioVenta, Stock=@stock, IdUsuario=@idUsuario WHERE Id=@id", conn);
+
+                SqlParameter idParameterId = new SqlParameter();
+                idParameterId.ParameterName = "id";
+                idParameterId.SqlDbType = SqlDbType.BigInt;
+                idParameterId.Value = productoModificado.Id;
+
+                SqlParameter idParameterDescripciones = new SqlParameter();
+                idParameterDescripciones.ParameterName = "descripciones";
+                idParameterDescripciones.SqlDbType = SqlDbType.VarChar;
+                idParameterDescripciones.Value = productoModificado.Descripciones;
+
+                SqlParameter idParameterCosto = new SqlParameter();
+                idParameterCosto.ParameterName = "costo";
+                idParameterCosto.SqlDbType = SqlDbType.Money;
+                idParameterCosto.Value = productoModificado.Costo;
+
+                SqlParameter idParameterPrecioVenta = new SqlParameter();
+                idParameterPrecioVenta.ParameterName = "precioVenta";
+                idParameterPrecioVenta.SqlDbType = SqlDbType.Money;
+                idParameterPrecioVenta.Value = productoModificado.PrecioVenta;
+
+                SqlParameter idParameterStock = new SqlParameter();
+                idParameterStock.ParameterName = "stock";
+                idParameterStock.SqlDbType = SqlDbType.Int;
+                idParameterStock.Value = productoModificado.Stock;
+
+                SqlParameter idParameterIdUsuario = new SqlParameter();
+                idParameterIdUsuario.ParameterName = "idUsuario";
+                idParameterIdUsuario.SqlDbType = SqlDbType.BigInt;
+                idParameterIdUsuario.Value = productoModificado.IdUsuario;
+
+                command.Parameters.Add(idParameterId);
+                command.Parameters.Add(idParameterDescripciones);
+                command.Parameters.Add(idParameterCosto);
+                command.Parameters.Add(idParameterPrecioVenta);
+                command.Parameters.Add(idParameterStock);
+                command.Parameters.Add(idParameterIdUsuario);
+
+                conn.Open();
+
+                return command.ExecuteNonQuery();
+            }
+        }
+
+        public static int EliminarProducto(long id)
+        {
+            using (SqlConnection conn = ConnectionHandler.ConnectToDb())
+            {
+                SqlCommand command = new SqlCommand("DELETE FROM Producto WHERE Id=@id", conn);
+
+                SqlParameter idParameterId = new SqlParameter();
+                idParameterId.ParameterName = "id";
+                idParameterId.SqlDbType = SqlDbType.Int;
+                idParameterId.Value = id;
+
+                command.Parameters.Add(idParameterId);
+
+                conn.Open();
+
+                return command.ExecuteNonQuery();
+            }
+        }
+
+
+
     }
 }

@@ -49,5 +49,36 @@ namespace proyecto_final_csharp.controllers
 
             return listaIdProductos;
         }
+
+        public static int IngresarProductoVendido(ProductoVendido nuevoProductoVendido)
+        {
+            using (SqlConnection conn = ConnectionHandler.ConnectToDb())
+            {
+                SqlCommand command = new SqlCommand("INSERT INTO ProductoVendido (Stock, IdProducto, IdVenta) VALUES (@stock, @idProducto, @idVenta)", conn);
+
+                SqlParameter idParameterStock = new SqlParameter();
+                idParameterStock.ParameterName = "stock";
+                idParameterStock.SqlDbType = SqlDbType.VarChar;
+                idParameterStock.Value = nuevoProductoVendido.Stock;
+
+                SqlParameter idParameterIdProducto = new SqlParameter();
+                idParameterIdProducto.ParameterName = "idProducto";
+                idParameterIdProducto.SqlDbType = SqlDbType.BigInt;
+                idParameterIdProducto.Value = nuevoProductoVendido.IdProducto;
+
+                SqlParameter idParameterIdventa = new SqlParameter();
+                idParameterIdventa.ParameterName = "idVenta";
+                idParameterIdventa.SqlDbType = SqlDbType.BigInt;
+                idParameterIdventa.Value = nuevoProductoVendido.IdVenta;
+
+                command.Parameters.Add(idParameterStock);
+                command.Parameters.Add(idParameterIdProducto);
+                command.Parameters.Add(idParameterIdventa);
+
+                conn.Open();
+
+                return command.ExecuteNonQuery();
+            }
+        }
     }
 }

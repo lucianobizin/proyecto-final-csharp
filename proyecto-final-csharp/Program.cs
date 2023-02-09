@@ -1,9 +1,13 @@
-﻿namespace proyecto_final_csharp
+﻿using proyecto_final_csharp.controllers;
+using proyecto_final_csharp.models;
+
+namespace proyecto_final_csharp
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            //// Primer Pre-Entrega del proyecto final
             ////---------------------------------------------
             ////EJERCICIO 1
 
@@ -84,6 +88,105 @@
             //    Console.WriteLine("Bienvenido " + usuarioLogueado.NombreUsuario);
 
             //}
+
+            //// --------------------------------------
+            //// ENTREGA DE CLASE 15
+            //// ---------------------------------------------
+
+            //// EJERCICIO 1
+
+            ////Simulación del front end del primer ejercicio (modificar usuario)
+
+            //Usuario usuarioModificado = new Usuario();
+            //usuarioModificado.Id = 2;
+            //usuarioModificado.Nombre = "Luciano";
+            //usuarioModificado.Apellido = "Bizin";
+            //usuarioModificado.NombreUsuario = "lbizin";
+            //usuarioModificado.Contraseña = "SoyLucianoBizin";
+            //usuarioModificado.Mail = "lucianob@gmail.com";
+
+
+            //if (ManipuladorUsuario.ModificarUsuario(usuarioModificado) >= 1)
+            //{
+            //    Console.WriteLine("Usuario modificado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No se pudo modificar el usuario");
+            //}
+
+            //Usuario usuarioModificado2 = new Usuario();
+            //usuarioModificado2.Id = 2;
+            //usuarioModificado2.Nombre = "Ernesto";
+            //usuarioModificado2.Apellido = "Perez";
+            //usuarioModificado2.NombreUsuario = "eperez";
+            //usuarioModificado2.Contraseña = "SoyErnestoPerez";
+            //usuarioModificado2.Mail = "ernestoperez@gmail.com";
+
+
+            //if (ManipuladorUsuario.ModificarUsuario(usuarioModificado2) >= 1)
+            //{
+            //    Console.WriteLine("Usuario modificado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No se pudo modificar el usuario");
+            //}
+
+            //// EJERCICIO 2
+
+            ////Simulación del front end del segundo ejercicio (insertar producto)
+
+            //Producto productoAInsertar = new Producto();
+            //productoAInsertar.Descripciones = "Campera Nike";
+            //productoAInsertar.Costo = 9000;
+            //productoAInsertar.PrecioVenta = 12000;
+            //productoAInsertar.Stock = 99;
+            //productoAInsertar.IdUsuario = 2;
+
+            //if (ManipuladorProducto.InsertarProducto(productoAInsertar) >= 1)
+            //{
+            //    Console.WriteLine("Producto insertado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No se pudo insertar el producto");
+            //}
+
+            //// EJERCICIO 3
+
+            ////Simulación del front end del tercer ejercicio (modificar producto)
+
+            //Producto productoAModificar = new Producto();
+            //productoAModificar.Id = 8;
+            //productoAModificar.Descripciones = "Campera Nike";
+            //productoAModificar.Costo = 15000;
+            //productoAModificar.PrecioVenta = 30000;
+            //productoAModificar.Stock = 99;
+            //productoAModificar.IdUsuario = 2;
+
+            //if (ManipuladorProducto.ModificarProducto(productoAModificar) >= 1)
+            //{
+            //    Console.WriteLine("Producto modificado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No se pudo modificar el producto");
+            //}
+
+            //// EJERCICIO 4
+
+            ////Simulación del front end del cuarto ejercicio (eliminar producto)
+
+            //if (ManipuladorProducto.EliminarProducto(Convert.ToInt64(7)) >= 1)
+            //{
+            //    Console.WriteLine("Producto eliminado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No se pudo eliminar el producto");
+            //}
+
         }
     }
 }

@@ -36,7 +36,7 @@ namespace proyecto_final_csharp.controllers
                     {
                         usuario.Id = reader.GetInt64(0);
                         usuario.Nombre = reader.GetString(1);
-                        usuario.Apeliido = reader.GetString(2);
+                        usuario.Apellido = reader.GetString(2);
                         usuario.NombreUsuario = reader.GetString(3);
                         usuario.Contraseña = reader.GetString(4);
                         usuario.Mail = reader.GetString(5);
@@ -77,7 +77,7 @@ namespace proyecto_final_csharp.controllers
                     {
                         user.Id = reader.GetInt64(0);
                         user.Nombre = reader.GetString(1);
-                        user.Apeliido = reader.GetString(2);
+                        user.Apellido = reader.GetString(2);
                         user.NombreUsuario = reader.GetString(3);
                         user.Contraseña = reader.GetString(4);
                         user.Mail = reader.GetString(5);
@@ -88,6 +88,55 @@ namespace proyecto_final_csharp.controllers
             }
 
             return null;
+        }
+
+        public static int ModificarUsuario(Usuario usuarioModificado)
+        {
+            using (SqlConnection conn = ConnectionHandler.ConnectToDb())
+            {
+                SqlCommand command = new SqlCommand("UPDATE Usuario SET Nombre=@nombre,Apellido=@apellido, NombreUsuario=@nombreUsuario, Contraseña=@contraseña, Mail=@mail WHERE Id=@id", conn);
+
+                SqlParameter idParameterNombre = new SqlParameter();
+                idParameterNombre.ParameterName = "nombre";
+                idParameterNombre.SqlDbType = SqlDbType.VarChar;
+                idParameterNombre.Value = usuarioModificado.Nombre;
+
+                SqlParameter idParameterApellido = new SqlParameter();
+                idParameterApellido.ParameterName = "apellido";
+                idParameterApellido.SqlDbType = SqlDbType.VarChar;
+                idParameterApellido.Value = usuarioModificado.Apellido;
+
+                SqlParameter idParameterNombreUsuario = new SqlParameter();
+                idParameterNombreUsuario.ParameterName = "nombreUsuario";
+                idParameterNombreUsuario.SqlDbType = SqlDbType.VarChar;
+                idParameterNombreUsuario.Value = usuarioModificado.NombreUsuario;
+
+                SqlParameter idParameterContraseña = new SqlParameter();
+                idParameterContraseña.ParameterName = "contraseña";
+                idParameterContraseña.SqlDbType = SqlDbType.VarChar;
+                idParameterContraseña.Value = usuarioModificado.Contraseña;
+
+                SqlParameter idParameterMail = new SqlParameter();
+                idParameterMail.ParameterName = "mail";
+                idParameterMail.SqlDbType = SqlDbType.VarChar;
+                idParameterMail.Value = usuarioModificado.Mail;
+
+                SqlParameter idParameterId = new SqlParameter();
+                idParameterId.ParameterName = "id";
+                idParameterId.SqlDbType = SqlDbType.Int;
+                idParameterId.Value = usuarioModificado.Id;
+
+                command.Parameters.Add(idParameterNombre);
+                command.Parameters.Add(idParameterApellido);
+                command.Parameters.Add(idParameterNombreUsuario);
+                command.Parameters.Add(idParameterContraseña);
+                command.Parameters.Add(idParameterMail);
+                command.Parameters.Add(idParameterId);
+
+                conn.Open();
+
+                return command.ExecuteNonQuery();  
+            }
         }
     }
 }
