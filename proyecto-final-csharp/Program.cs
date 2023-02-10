@@ -187,6 +187,41 @@ namespace proyecto_final_csharp
             //    Console.WriteLine("No se pudo eliminar el producto");
             //}
 
+            //// EJERCICIO 5
+
+            ////Simulación del front end del quinto ejercicio (agregar venta/s)
+
+            Producto producto1= new Producto();
+            producto1.Id = 6;
+            producto1.Descripciones = "Buzo";
+            producto1.Costo = 1000;
+            producto1.PrecioVenta = 3000;
+            producto1.Stock = 2;
+            producto1.IdUsuario = 1;
+
+            Producto producto2 = new Producto();
+            producto2.Id = 8;
+            producto2.Descripciones = "Campera Nike";
+            producto2.Costo = 15000;
+            producto2.PrecioVenta = 30000;
+            producto2.Stock = 2;
+            producto2.IdUsuario = 2;
+
+            List<Producto> products = new List<Producto>();
+            products.Add(producto1);
+            products.Add(producto2);
+
+            if (ManipuladorVenta.ProcesarVenta(products, 2) >= 1)
+            {
+                Console.WriteLine("Se agregó la venta realizada");
+            }
+
+            else
+            {
+                Console.WriteLine("No se pudo ingresar la venta, por favor, vuelva a inteneralo");
+            }
+
+
         }
     }
 }
