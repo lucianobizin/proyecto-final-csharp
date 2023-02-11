@@ -120,7 +120,7 @@ namespace proyecto_final_csharp.controllers
                             productoTemporal.Costo = producto.Costo;
                             productoTemporal.PrecioVenta = producto.PrecioVenta;
                             productoTemporal.Stock = ManipuladorProducto.ObtenerProductoPorId(producto.Id).Stock - productoVendidoTempo.Stock;
-                            productoTemporal.IdUsuario = producto.IdUsuario;
+                            productoTemporal.IdUsuario = ManipuladorProducto.ObtenerProductoPorId(producto.Id).IdUsuario;
 
                             ManipuladorProducto.ModificarProducto(productoTemporal);
                         }
