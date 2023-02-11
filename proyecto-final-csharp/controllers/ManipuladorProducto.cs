@@ -223,18 +223,27 @@ namespace proyecto_final_csharp.controllers
         {
             using (SqlConnection conn = ConnectionHandler.ConnectToDb())
             {
-                SqlCommand command = new SqlCommand("DELETE FROM Producto WHERE Id=@id", conn);
+                if (ManipuladorProductoVendido.EliminarProductoVendidoPorIdProducto(id) >=1)
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM Producto WHERE Id=@id", conn);
 
-                SqlParameter idParameterId = new SqlParameter();
-                idParameterId.ParameterName = "id";
-                idParameterId.SqlDbType = SqlDbType.Int;
-                idParameterId.Value = id;
+                    SqlParameter idParameterId = new SqlParameter();
+                    idParameterId.ParameterName = "id";
+                    idParameterId.SqlDbType = SqlDbType.Int;
+                    idParameterId.Value = id;
 
-                command.Parameters.Add(idParameterId);
+                    command.Parameters.Add(idParameterId);
 
-                conn.Open();
+                    conn.Open();
 
-                return command.ExecuteNonQuery();
+                    return command.ExecuteNonQuery();
+                }
+
+                else
+                {
+                    return -1;
+                }
+
             }
         }
 

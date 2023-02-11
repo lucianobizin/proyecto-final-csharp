@@ -80,5 +80,24 @@ namespace proyecto_final_csharp.controllers
                 return command.ExecuteNonQuery();
             }
         }
+
+        public static int EliminarProductoVendidoPorIdProducto(long idProducto)
+        {
+            using (SqlConnection conn = ConnectionHandler.ConnectToDb())
+            {
+                SqlCommand command = new SqlCommand("DELETE FROM ProductoVendido WHERE IdProducto=@idProducto", conn);
+
+                SqlParameter idParameterIdProducto = new SqlParameter();
+                idParameterIdProducto.ParameterName = "idProducto";
+                idParameterIdProducto.SqlDbType = SqlDbType.BigInt;
+                idParameterIdProducto.Value = idProducto;
+
+                command.Parameters.Add(idParameterIdProducto);
+
+                conn.Open();
+
+                return command.ExecuteNonQuery();
+            }
+        }
     }
 }
