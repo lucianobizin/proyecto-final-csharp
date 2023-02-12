@@ -59,7 +59,7 @@ namespace proyecto_final_csharp.controllers
             using (SqlConnection conn = ConnectionHandler.ConnectToDb())
             {
                 Venta venta = new Venta();
-                SqlCommand command = new SqlCommand("SELECT TOP (1) [Id],[Comentarios],[IdUsuario] FROM [SistemaGestion].[dbo].[Venta] WHERE Id=@idUsuario ORDER BY Id DESC", conn);
+                SqlCommand command = new SqlCommand("SELECT TOP (1) [Id],[Comentarios],[IdUsuario] FROM [SistemaGestion].[dbo].[Venta] WHERE IdUsuario=@idUsuario ORDER BY Id DESC", conn);
                 SqlParameter idParameter = new SqlParameter();
                 idParameter.ParameterName = "idUsuario";
                 idParameter.SqlDbType = SqlDbType.BigInt;
